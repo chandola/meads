@@ -1,0 +1,10 @@
+# Use the following format 
+#- title: <title of paper> 
+#  image: <representative graphic>
+#  description: <description of paper> 
+#  authors: <authors>
+#  link:
+#    url: <url for paper> 
+#    display:  <Citation that appears on the page>
+#  highlight: 1
+#  news2: 

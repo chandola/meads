@@ -1,0 +1,27 @@
+- name: Molly Wright Steenson
+  title: Senior Associate Dean for Research, College of Fine Arts, K&L Gates Associate Professor of Ethics & Computational Technologies and Associate Professor, School of Design
+  url: https://design.cmu.edu/people/faculty/molly-steenson
+  photo: Steenson.png
+  talktitle: AI and Stories of Autonomous Landscapes 
+  talkabstract: Part myth, part imaginary, part reality, there are numerous visions of how AI is changing the landscape around us. Yet these ideas have a longer history—one that directly implicates architects and architecture back to the 1960s. In this talk, Molly Wright Steenson traces the history of AI in architecture and looks ahead to its contemporary and future implications. 
+  talklocation: 301 Crosby Hall, UB South Campus (Co-hosted with the School of Architecture and Planning)
+  talktime: 6PM - 7.30PM, Thursday, October 18, 2018
+
+- name: Lenore Zuck 
+  title: Research Professor, Computer Science, University of Illinois at Chicago
+  url: https://www.cs.uic.edu/~lenore
+  photo: Zuck.png
+  talktitle: Code Should Not Be Law Checks and Balances in Human-machine Systems
+  talkabstract: Autonomous systems, smart contracts on block chains, and even social networks encode decisions and ethical policies that they impose on their users and their environments. This talk will present analysis of some cases where abdicating the responsibility of ethical decisions and delegating them to software resulted in measurable problems. I will also discuss instances where systems are designed to have built-in mechanisms for humans to monitor, and sometimes override, their decisions. The (somewhat subjective) conclusion the talk will lead into is that human-intervention has to be built into any system that impacts a large enough organization or the environment.
+  talklocation: 113A Davis Hall, UB North Campus (Co-hosted with the Computational and Data-enabled Science and Engineering (CDSE) program) 
+  talktime: 10.00AM - 11.00AM, Friday, November 09, 2018
+
+- name: Azim Shariff 
+  title: Associate Professor, Department of Psychology, University of British Columbia
+  url: http://sharifflab.com/
+  photo: Sharrif.jpg
+  talktitle: Moral Machines - The Ethical Dilemmas of Self-Driving Cars
+  talkabstract: With the rapid approach of self-driving cars, we are poised to yield autonomy to millions of machines that will have the power over life and death. The road to this future has a bright promise, but as we are beginning to see, there are numerous psychological roadblocks. Many of these involve thorny ethical challenges that come when the moral decisions that are today made by individual drivers are turned over to preprogrammed algorithms. How should these cars be programmed to mete out risks to the various people on road? Who determines the ethics of these algorithms? I will discuss the recent work with my collaborators on the social psychology and legal implications of these moral machines.  
+  talklocation: 108 O'Brian Hall, UB North Campus (Co-hosted with the Computational and Data-enabled Science and Engineering (CDSE) program) 
+  talktime: 10.00AM - 11.00AM, Friday, March 08, 2019
+
