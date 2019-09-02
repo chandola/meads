@@ -1,65 +1,25 @@
-- name: Matthew Bolton 
-  photo: Bolton.jpg
-  info: Assistant Professor, Industrial and Systems Engineering
-  email: mbolton@buffalo.edu
-  number_educ: 3
-  education1: PhD, Systems Engineering, University of Virginia.
-  education2: MS, Systems Engineering, University of Virginia. 
-  education3: BS, Computer Science, Minor in Applied Mathematics, University of Virginia.
-  
 - name: Varun Chandola 
   photo: Chandola.jpg
-  info: Assistant Professor, Computer Science and Engineering
+  info: Assistant Professor, Computer Science and Engineering, Computational and Data-enabled Science and Engineering
   email: chandola@buffalo.edu
-  number_educ: 3 
-  education1: Postdoc at Oak Ridge National Laboratory with <a href="https://www.csc.ncsu.edu/people/rrvatsav">Raju Vatsavai</a> 
-  education2: PhD, Computer Science and Engineering, University of Minnesota
-  education3: B.Tech., Computer Science and Engineering, Indian Institute of Technology, Madras 
+  number_educ: 2 
+  education1: PhD, Computer Science and Engineering, University of Minnesota
+  education2: B.Tech., Computer Science and Engineering, Indian Institute of Technology, Madras, India 
 
-- name: Kenny Joseph 
-  photo: Joseph.jpg
-  info: Assistant Professor, Computer Science and Engineering
-  email: kjoseph@buffalo.edu
-  number_educ: 4 
-  education1: Postdoc at Network Science Institute, Northeastern University 
-  education2: PhD, Societal Computing, Carnegie Mellon University 
-  education3: MS, Societal Computing, Carnegie Mellon University 
-  education4: BS, Computer Science, University of Michigan-Ann Arbor
-  
-- name: Jonathan Manes 
-  photo: Manes.jpg
-  info: Assistant Clinical Professor, School of Law
-  email: jmmanes@buffalo.edu 
-  number_educ: 3 
-  education1: JD, Yale Law School, Yale University 
-  education2: MSc, Philosophy of the Social Sciences, London School of Economics 
-  education3: BA, Biochemistry, Columbia University 
-  
-- name: Atri Rudra 
-  photo: Rudra.png
-  info: Associate Professor, Computer Science and Engineering
-  email: atri@buffalo.edu 
-  number_educ: 3
-  education1: PhD, Computer Science and Engineering, University of Washington 
-  education2: MS, Computer Science and Engineering, University of Washington 
-  education3: BTech, Computer Science and Engineering, Indian Institute of Technology, Kharagpur 
+- name: Olga Wodo
+  photo: Wodo.jpg
+  info: Assistant Professor, Materials Design and Innovation
+  email: olgawodo@buffalo.edu
+  number_educ: 2
+  education1: PhD, Mechanical Engineering, Czestochowa University of Technology, Poland 
+  education2: M.Sc., Mechanical Engineering, Czestochowa University of Technology, Poland
 
-- name: Mark Shepard 
-  photo: Shepard.jpg 
-  info: Associate Professor, Architecture and Media Study 
-  email: shepard6@buffalo.edu
-  number_educ: 3
-  education1: MS, Advanced Architectural Design, Columbia University
-  education2: MFA, Combined Media from Hunter College, City University of New York
-  education3: BArch, Cornell University.
 
-- name: David Doermann 
-  photo: Doermann.jpg 
-  info: Professor, Computer Science and Engineering 
-  email: doermann@buffalo.edu
-  number_educ: 3
-  education1: PhD, University of Maryland, College Park 
-  education2: MS, University of Maryland, College Park 
-  education3: BS, Bloomsburg University of Pennsylvania
-  
-  
+- name: Jaroslaw Zola 
+  photo: Zola.jpg
+  info: Assistant Professor, Computer Science and Engineering, Biomedical Informatics
+  email: jzola@buffalo.edu
+  number_educ: 2 
+  education1: PhD, Computer Science, Grenoble Institute of Technology, Grenoble, France 
+  education2: M.Sc., Computer Science, Czestochowa University of Technology, Poland
+

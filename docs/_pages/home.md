@@ -1,14 +1,13 @@
 ---
-title: "Ethical AI at UB - Home"
+title: "Manifolds for Extreme-scale Applied Data Science (MEADS) - Home"
 layout: homelay
-excerpt: "Ethical AI at UB"
+excerpt: "MEADS"
 sitemap: false
 permalink: /
 ---
 
  
- The UB Ethical AI working group studies how artificial intelligence (AI) tools are used to make decisions that affect the rights and opportunities of citizens.
-
+The Manifolds for Extreme-scale Applied Data Science project at University at Buffalo (UB) is a research endeavor to develop new solutions for learning non-linear low-dimensional representations from massive high-dimensional data sets.
 <div markdown="0" id="carousel" class="carousel slide" data-ride="carousel" data-interval="5000" data-pause="hover" >
     <!-- Menu -->
     <!--ol class="carousel-indicators">
@@ -35,12 +34,10 @@ permalink: /
     <span class="sr-only">Next</span>
   </a-->
 </div>
-<div class="well">
-<a href="https://listserv.buffalo.edu/cgi-bin/wa?SUBED1=UB-ETHICALAI-LIST&A=1">Click here</a> to get added to the UB Ethical AI mailing list and receive updates about events, talks, etc.
-</div>
-
-We are grateful for funding from the [Germination Space program](https://www.buffalo.edu/research/events-announcements/ovpred-news.host.html/content/shared/www/research/research-news/2018/germination-space.detail.html) at University at Buffalo.
 
 <figure class="fourth">
   <img src="{{ site.url }}{{ site.baseurl }}/images/logopic/Logo_UB.png" style="width: 220px;vspace: 20px">
+</figure>
+<figure class="fourth">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/logopic/Logo_NSF.png" style="width: 220px;vspace: 20px">
 </figure>

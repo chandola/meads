@@ -1,7 +1,7 @@
 ---
-title: "News"
-layout: textlay
-excerpt: "Ethical AI at UB."
+title: "Manifolds for Extreme-scale Applied Data Science (MEADS) - News"
+layout: homelay
+excerpt: "MEADS"
 sitemap: false
 permalink: /allnews.html
 ---

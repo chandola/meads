@@ -1,11 +1,10 @@
 ---
-title: "Ethical AI @ UB - Publications"
-layout: gridlay
-excerpt: "Ethical AI @ UB - Publications"
+title: "Manifolds for Extreme-scale Applied Data Science (MEADS) - Publications"
+layout: homelay
+excerpt: "MEADS"
 sitemap: false
-permalink: /publications/
+permalink: /
 ---
-
 
 # Publications
 

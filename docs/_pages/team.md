@@ -1,9 +1,9 @@
 ---
-title: "Ethical AI Working Group - Team"
-layout: gridlay
-excerpt: "Ethical AI Working Group: Team members"
+title: "Manifolds for Extreme-scale Applied Data Science (MEADS) - Home"
+layout: homelay
+excerpt: "MEADS"
 sitemap: false
-permalink: /team/
+permalink: /
 ---
 
 # Group Members
@@ -70,9 +70,3 @@ permalink: /team/
 {% endif %}
 
 ## Administrative Support
-
-
-
-
-
-

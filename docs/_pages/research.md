@@ -1,7 +1,7 @@
 ---
-title: "Ethical AI @ UB - Research"
-layout: textlay
-excerpt: "Ethical AI @ UB -- Research"
+title: "Manifolds for Extreme-scale Applied Data Science (MEADS) - Research"
+layout: homelay
+excerpt: "MEADS"
 sitemap: false
 permalink: /research/
 ---
