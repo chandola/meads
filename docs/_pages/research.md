@@ -1,6 +1,6 @@
 ---
 title: "Manifolds for Extreme-scale Applied Data Science (MEADS) - Research"
-layout: homelay
+layout: research 
 excerpt: "MEADS"
 sitemap: false
 permalink: /research/
