@@ -10,7 +10,7 @@ title: MEADS Research Group
 email: chandola@buffalo.edu
 description: > # this means to ignore newlines until "baseurl:"
   Website for MEADS Research group.
-baseurl: "/meads/docs"
+baseurl: "/meads"
 
 include:
   - .htaccess
