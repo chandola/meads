@@ -3,7 +3,7 @@ title: "Manifolds for Extreme-scale Applied Data Science (MEADS) - Publications"
 layout: homelay
 excerpt: "MEADS"
 sitemap: false
-permalink: /
+permalink: /publications/
 ---
 
 # Publications

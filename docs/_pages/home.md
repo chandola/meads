@@ -6,7 +6,6 @@ sitemap: false
 permalink: /
 ---
 
- 
 The Manifolds for Extreme-scale Applied Data Science project at University at Buffalo (UB) is a research endeavor to develop new solutions for learning non-linear low-dimensional representations from massive high-dimensional data sets.
 <div markdown="0" id="carousel" class="carousel slide" data-ride="carousel" data-interval="5000" data-pause="hover" >
     <!-- Menu -->
@@ -34,7 +33,5 @@ The Manifolds for Extreme-scale Applied Data Science project at University at Bu
 
 <figure class="fourth">
   <img src="{{ site.url }}{{ site.baseurl }}/images/logopic/Logo_UB.png" style="width: 220px;vspace: 20px">
-</figure>
-<figure class="fourth">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/logopic/Logo_NSF.png" style="width: 220px;vspace: 20px">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/logopic/Logo_NSF.png" style="width: 120px;vspace: 20px">
 </figure>

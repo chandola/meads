@@ -1,9 +1,9 @@
 ---
-title: "Manifolds for Extreme-scale Applied Data Science (MEADS) - Home"
+title: "Manifolds for Extreme-scale Applied Data Science (MEADS) - Team"
 layout: homelay
 excerpt: "MEADS"
 sitemap: false
-permalink: /
+permalink: /team/
 ---
 
 # Group Members
