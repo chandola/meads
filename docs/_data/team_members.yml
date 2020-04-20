@@ -5,6 +5,7 @@
   number_educ: 2 
   education1: PhD, Computer Science and Engineering, University of Minnesota
   education2: B.Tech., Computer Science and Engineering, Indian Institute of Technology, Madras, India 
+  role: PI
 
 - name: Olga Wodo
   photo: Wodo.jpg
@@ -13,7 +14,7 @@
   number_educ: 2
   education1: PhD, Mechanical Engineering, Czestochowa University of Technology, Poland 
   education2: M.Sc., Mechanical Engineering, Czestochowa University of Technology, Poland
-
+  role: PI
 
 - name: Jaroslaw Zola 
   photo: Zola.jpg
@@ -22,4 +23,21 @@
   number_educ: 2 
   education1: PhD, Computer Science, Grenoble Institute of Technology, Grenoble, France 
   education2: M.Sc., Computer Science, Czestochowa University of Technology, Poland
+  role: PI
+
+- name: Namit Juneja 
+  photo: Juneja.jpg
+  info: PhD Student, Computer Science and Engineering
+  email: namitjun@buffalo.edu
+  number_educ: 1 
+  education1: NA 
+  role: RA
+
+- name: Nathan Margaglio 
+  photo: Margaglio.jpg
+  info: PhD Student, Computer Science and Engineering
+  email: namargag@buffalo.edu
+  number_educ: 1 
+  education1: NA 
+  role: RA
 
