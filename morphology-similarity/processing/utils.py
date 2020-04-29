@@ -6,7 +6,7 @@ import numpy as np
 from skimage import measure
 
 
-def extract_components(image, binarize=True):
+def extract_components(image, binarize=True, background=-1):
     """
     Extract morpholgoical components from an image.
 
@@ -20,11 +20,8 @@ def extract_components(image, binarize=True):
     components = []
     if binarize:
         image = (image > 0.5).astype(int)
-    labeled_sample = measure.label(image, background=-1)
-    for label in np.unique(labeled_sample):
-        # we only want the component matching our current label and whose pixel value is '0'
-        component = ((labeled_sample == label) &
-                     (image == 0)).astype(np.float64)
+    labeled_sample = measure.label(image, background=background)
+    for component in np.unique(labeled_sample):
         if not (component == 0).all():
             # if the entire image isn't all blank, collect it
             components.append(component)
