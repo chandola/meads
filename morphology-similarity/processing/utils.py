@@ -21,7 +21,9 @@ def extract_components(image, binarize=True, background=-1):
     if binarize:
         image = (image > 0.5).astype(int)
     labeled_sample = measure.label(image, background=background)
-    for component in np.unique(labeled_sample):
+    for label in np.unique(labeled_sample):
+        # separate each component out
+        component = (labeled_sample == label).astype(np.float64)
         if not (component == 0).all():
             # if the entire image isn't all blank, collect it
             components.append(component)
