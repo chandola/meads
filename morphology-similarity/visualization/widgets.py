@@ -8,7 +8,7 @@ import pandas as pd
 from .figures import get_distance_matrix_figure, get_image_figure
 
 
-def get_distance_matrix_widget(dist_matrix, df_x, df_y=None):
+def get_distance_matrix_widget(dist_matrix, df_x, df_y=None, zmax=None):
     """
     Creates a widget which displays a Plotly Heatmap representing the provided distance matrix.
     Clicking on a cell in the distance matrix displays the two underlying morphologies.
@@ -18,6 +18,7 @@ def get_distance_matrix_widget(dist_matrix, df_x, df_y=None):
         df_x: A Pandas DataFrame corresponding to the columns (x-direction) of the distance matrix.
         df_y: A Pandas DataFrame corresponding to the rows (y-direction) of the distance matrix.
                 Default to None, which assumes df_y = df_x.
+        zmax: Set the maximum for the color-scale in the distance matrix (Defaults to None for no max).
 
     Returns:
         An interactive ipywidget (viewable in Jupyter)
@@ -74,6 +75,8 @@ def get_distance_matrix_widget(dist_matrix, df_x, df_y=None):
 
     # Set the click callback on the distance Heatmap to the above function
     dist_fig.data[0].on_click(show_samples)
+    if zmax is not None:
+        dist_fig.data[0].update(zmin=0., zmax=zmax)
 
     # We use VBox and HBox to structure the visualizations
     return widgets.VBox([

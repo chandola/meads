@@ -30,6 +30,32 @@ def extract_components(image, binarize=True, background=-1):
     return components
 
 
+def extract_minkowski_scalars(image, binarize=True, background=-1):
+    """
+    Extract 2D Minkowski scalars for each component of an image.
+
+    Arguments:
+        image: An image, represented as a 2D NumPy array
+        binarize: Flag to binarize the image before extraction.  Defaults to True.
+
+    Returns:
+        A list of Minkowski signatures for each component in the image
+    """
+    component_signatures = []
+    if binarize:
+        image = (image > 0.5).astype(int)
+    labeled_sample = measure.label(image, background=background)
+    region_props = measure.regionprops(labeled_sample)
+    for props in region_props:
+        component = np.array([
+            props.area,
+            props.perimeter,
+            props.euler_number
+        ])
+        component_signatures.append(component)
+    return np.array(component_signatures)
+
+
 def crop_image(image, tolerance=0):
     """
     Crop an image by reducing the dimensions to a minimal size
