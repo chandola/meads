@@ -55,7 +55,7 @@ def extract_components(image,
         component = (labeled_sample == label).astype(np.float64)
         
         if not allow_blank_images:
-            if not (component == 0).all():
+            if (component == 0).all():
                 continue 
                 
         components.append(component)
