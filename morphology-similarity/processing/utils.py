@@ -36,9 +36,9 @@ def extract_components(image,
         components (list): 
             A list of component images with the same shape as the input
             image.
-        binary_image (ndarray): 
-            Thresholded gray scale image. Only returned when
-            return_images is set to True.
+        image (ndarray): 
+            Original image (and binarized if binarize=True). Only
+            returned when return_images is set to True.
         labeled_sample (ndarray): 
             A labelled image where all connected ,regions are assigned
             the same integer value. Only returned when return_images is
@@ -46,9 +46,9 @@ def extract_components(image,
     """
     components = []
     if binarize:
-        binary_image = (image > 0.5).astype(int)
+        image = (image > 0.5).astype(int)
 
-    labeled_sample = measure.label(binary_image, background=background)
+    labeled_sample = measure.label(image, background=background)
 
     for label in np.unique(labeled_sample):
         # extract companent into a separate image
@@ -67,7 +67,7 @@ def extract_components(image,
         components = components[1:]
     
     if return_images:
-        return components, binary_image, labeled_sample
+        return components, image, labeled_sample
     else:
         return components
 
