@@ -36,9 +36,12 @@ def extract_components(image,
         components (list): 
             A list of component images with the same shape as the input
             image.
+        binary_image (ndarray): 
+            Thresholded gray scale image. Only returned when
+            return_images is set to True.
         labeled_sample (ndarray): 
             A labelled image where all connected ,regions are assigned
-            the same integer value. Only returned when return_label is
+            the same integer value. Only returned when return_images is
             set to True.
     """
     components = []
@@ -53,7 +56,7 @@ def extract_components(image,
         
         if not allow_blank_images:
             if not (component == 0).all():
-                pass 
+                continue 
                 
         components.append(component)
 
