@@ -1,17 +1,22 @@
 """
-Conatins implementation of BFS graph vectorization algorithm
+Conatains implementation of BFS graph vectorization algorithm
 """
 import processing 
 from skimage.future import graph
 import numpy as np
 
-def generate_region_adjacency_graph(image):
+def generate_region_adjacency_graph(image, signature_function):
     """
     Create a region adjacency graph from a given image
     Args:
-        image (ndarray): grayscale image
+        image (ndarray): 
+            grayscale image
+        signature_function (int):
+            function to be used to calculate the signal of each
+            component/blob
     Return:
-        rag (RAG): region adjacency graph
+        rag (RAG): 
+            region adjacency graph
     """
     # identify neighbouring pixels with the same pixel value, assign 
     # them labels and split them.
@@ -34,7 +39,7 @@ def generate_region_adjacency_graph(image):
     for component in components:
         sig = processing.apply_signatures(
             component,
-            "surface_volume_ratio_sig",
+            signature_function,
             allow_empty_sig=True)
         sigs.append(sig[0])
 
@@ -109,7 +114,7 @@ def get_node_color_sign(node_color):
 
     if node_color < 2:
         # when node color value is 0 or 1
-        return -1 ** (node_color+1)
+        return ((-1) ** (node_color+1))
     else:
         # 255 is always white
         return 1
@@ -144,7 +149,6 @@ def priority_bfs(graph, root, return_traversal_order=False):
     visited = []
     queue   = []
 
-    visited.append(root)
     # Queue element storage format 
     # [ (<node>, <node_signature>) , (<node>, <node_signature>), ... ]
     queue.append((root,graph.nodes[root]['weight']))
@@ -215,3 +219,100 @@ def generate_bfs_vector(graph, return_traversal_order=False):
         graph, 
         root,
         return_traversal_order=return_traversal_order)
+
+
+
+
+def front_pad(vector, max_dimension):
+    """
+    Add zeroes in front of the given vector
+    """
+    # make np array if not
+    if not isinstance(vector, np.ndarray): vector=np.array(vector)
+
+    return np.pad(vector, (0,max_dimension-len(vector)))
+
+
+
+def generate_padded_vectors(vectors):
+    """
+    Implements layerwise padding. 
+    Note this function only pads any two vectors at a time by aligning 
+    all the white nodes one under the other and filing empty spaces
+    with empty nodes in between. 
+    Args:
+        vectors (list): A list of length 2 containing the 2 vectors to be padded
+    Returns:
+        padded_vectors (list): A list of length 2 containing the 2 padded vectors
+    """
+     
+    split_vectors = []
+
+    for vector in vectors:
+        # split the nodes based on sign
+        split_indices = []
+
+        for index,d in enumerate(vector):
+            if d >= 0:
+                split_indices.extend([index, index+1])
+
+        split_vector = np.split(vector, split_indices)
+        split_vectors.append(split_vector)
+
+
+
+    # get the maximum length of split at each 
+    # position for all the vectors
+    max_split_length = {}
+
+    for split_vector in split_vectors:
+        for index, split in enumerate(split_vector):
+            max_split_length[index] = max([len(split), max_split_length.get(index, 0)])
+
+
+
+    # pad all the splits to their 
+    # respective max lengths
+    padded_split_vectors = []
+    for split_vector in split_vectors:
+
+        padded_split_vector = []
+        for index,split in enumerate(split_vector):
+
+            padded_split = front_pad(split, max_split_length[index])
+            padded_split_vector.append(padded_split)
+
+        padded_split_vectors.append(padded_split_vector)
+
+
+
+    # Merge all splits into single vector
+    merged_vectors = []
+    for padded_split_vector in padded_split_vectors:
+        merged_vector = np.concatenate(padded_split_vector)
+        merged_vectors.append(merged_vector)
+
+
+    # over all frontpad to compensate for
+    # different number of layers in each graph
+    max_dimension = max(map(len, merged_vectors))
+
+    padded_vectors = []
+    for merged_vector in merged_vectors:
+
+        padded_vector = front_pad(merged_vector, max_dimension)
+        padded_vectors.append(padded_vector)
+
+
+    # make all vector dimension magnitudes 
+    # positive irrespective of color
+    # positive_vectors = []
+    # for padded_vector in padded_vectors:
+
+    # 	positive_vector = np.abs(padded_vector)
+    # 	positive_vectors.append(positive_vector)
+
+    # write some tests maybe
+    return padded_vectors
+
+
