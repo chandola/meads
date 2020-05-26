@@ -7,6 +7,10 @@ import numpy as np
 from skimage import measure
 
 
+def binarize(image, thresh=0.5):
+    return (image > thresh).astype(int)
+
+
 def extract_components(image, 
                        binarize=True, 
                        background=-1,
@@ -114,6 +118,49 @@ def crop_image(image, tolerance=0):
     return image[np.ix_(mask.any(1), mask.any(0))]
 
 
+def get_inscribed_rect_area(component):
+    """
+    Calculate the area of the largest rectangle inscribed
+    in the given component.
+    (adapted from https://stackoverflow.com/a/30418912)
+
+    Arguments:
+        component: An image, represented as a 2D NumPy array
+
+    Returns:
+        The tuple whose first component is the area, as a float,
+        and whose second component is a tuple representing the
+        bounding coordinates of the rectangle.
+    """
+    nrows = component.shape[0]
+    ncols = component.shape[1]
+    skip = 0
+    area_max = (0, [])
+
+    a = component
+    w = np.zeros(dtype=int, shape=a.shape)
+    h = np.zeros(dtype=int, shape=a.shape)
+    for r in range(nrows):
+        for c in range(ncols):
+            if a[r][c] == skip:
+                continue
+            if r == 0:
+                h[r][c] = 1
+            else:
+                h[r][c] = h[r-1][c]+1
+            if c == 0:
+                w[r][c] = 1
+            else:
+                w[r][c] = w[r][c-1]+1
+            minw = w[r][c]
+            for dh in range(h[r][c]):
+                minw = min(minw, w[r-dh][c])
+                area = (dh+1)*minw
+                if area > area_max[0]:
+                    area_max = (area, [(r-dh, c-minw+1, r, c)])
+    return area_max
+
+
 def apply_signatures(image, sig_funcs, allow_empty_sig=False):
     """
     Applies the provided signature functions to the given image.
@@ -145,9 +192,9 @@ def apply_signatures(image, sig_funcs, allow_empty_sig=False):
     return sigs
 
 
-def apply_to_components(image, func, crop=True):
+def apply_to_image(image, func, crop=True):
     """
-    Apply the given function to the components of each image.
+    Apply the given function to an image.
 
     Arguments:
         image: An image, represented as a 2D NumPy array
@@ -159,6 +206,27 @@ def apply_to_components(image, func, crop=True):
     """
     measurements = []
     components = extract_components(image)
+    for component in components:
+        if crop:
+            component = crop_image(component)
+        measurement = func(component)
+        measurements.append(measurement)
+    return np.array(measurements)
+
+
+def apply_to_components(components, func, crop=True):
+    """
+    Apply the given function to the components of an image.
+
+    Arguments:
+        image: An image, represented as a 2D NumPy array
+        func: The function to apply to the components
+        crop: Flag to crop the component to minimal dimensions (defaults to True)
+
+    Returns:
+        A list of measurements corresponding to the result of the function call on each component.
+    """
+    measurements = []
     for component in components:
         if crop:
             component = crop_image(component)
