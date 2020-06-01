@@ -67,7 +67,16 @@ def get_image_figure(data=None, height=75, width=300, margin=0):
     return sample_fig
 
 
-def get_distance_matrix_figure(dist_matrix, labels_x=None, labels_y=None, scaleanchor='x'):
+def get_distance_matrix_figure(
+    dist_matrix,
+    labels_x=None,
+    labels_y=None,
+    scaleanchor='x',
+    showticklabels=False,
+    title=None,
+    xtitle=None,
+    ytitle=None
+):
     """
     Create a Plotly Heatmap to vizualize the provided distance matrix.
 
@@ -88,21 +97,28 @@ def get_distance_matrix_figure(dist_matrix, labels_x=None, labels_y=None, scalea
             z=dist_matrix
         ),
         layout=go.Layout(
+            title=title,
             coloraxis_showscale=False,
             height=600,
             width=600,
             xaxis=dict(
+                title=xtitle,
                 autorange=True,
                 showgrid=False,
-                ticks='',
-                showticklabels=False
+                ticks='inside',
+                tickmode='array',
+                type='category',
+                showticklabels=showticklabels
             ),
             yaxis=dict(
+                title=ytitle,
                 scaleanchor=scaleanchor,
                 autorange=True,
                 showgrid=False,
-                ticks='',
-                showticklabels=False
+                ticks='inside',
+                tickmode='array',
+                type='category',
+                showticklabels=showticklabels
             )
         )
     )

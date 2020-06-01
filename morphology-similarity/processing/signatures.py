@@ -39,3 +39,8 @@ def rect_area_ratio_sig(component):
     circ_area = cropped_component.shape[0] * cropped_component.shape[1]
     insc_area = get_inscribed_rect_area(cropped_component)[0]
     return insc_area/circ_area
+
+
+def average_pixel_intensity_sig(component):
+    """The average pixel value"""
+    return np.mean(component)
