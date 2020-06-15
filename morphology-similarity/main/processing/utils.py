@@ -2,7 +2,6 @@
 Contains utility functions for the preprocessing of images for later
 analysis.
 """
-import processing
 import numpy as np
 from skimage import measure
 
@@ -10,6 +9,14 @@ from skimage import measure
 def binarize(image, thresh=0.5):
     return (image > thresh).astype(int)
 
+def reshape_image(image):
+    image = np.array(image)
+    try:
+        return image.reshape((100, 400))
+    except ValueError as e:
+        image = image.reshape((100, 800))
+        return image[:400]
+    
 
 def extract_components(image, 
                        binarize=True, 

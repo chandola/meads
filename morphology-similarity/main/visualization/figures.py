@@ -75,7 +75,8 @@ def get_distance_matrix_figure(
     showticklabels=False,
     title=None,
     xtitle=None,
-    ytitle=None
+    ytitle=None,
+    type=None
 ):
     """
     Create a Plotly Heatmap to vizualize the provided distance matrix.
@@ -107,7 +108,7 @@ def get_distance_matrix_figure(
                 showgrid=False,
                 ticks='inside',
                 tickmode='array',
-                type='category',
+                type=type,
                 showticklabels=showticklabels
             ),
             yaxis=dict(
@@ -117,7 +118,7 @@ def get_distance_matrix_figure(
                 showgrid=False,
                 ticks='inside',
                 tickmode='array',
-                type='category',
+                type=type,
                 showticklabels=showticklabels
             )
         )

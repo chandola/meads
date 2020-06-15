@@ -2,7 +2,6 @@
 Contains the functions to compute the distance between images.
 """
 import numpy as np
-import processing
 
 
 def compute_distance(image_1, image_2, macro, signature):

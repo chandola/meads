@@ -1,7 +1,6 @@
 """
 Conatains implementation of BFS graph vectorization algorithm
 """
-import processing 
 from skimage.future import graph
 import numpy as np
 
