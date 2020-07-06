@@ -61,6 +61,15 @@ class Morphology:
         np.save(f'{self.data_path}/signatures/{sig_func.__name__}', signature)
         self.load_signature(sig_func.__name__)
         
+    def get_signature(self, sig_func):
+        if sig_func.__name__ not in self.signatures:
+            # First, try loading the signatures
+            self.load_signatures()
+        if sig_func.__name__ not in self.signatures:
+            # Next, try creating the signature
+            self.cache_signature(sig_func)
+        return self.signatures[sig_func.__name__]
+        
     def viz(self):
         return get_image_figure(self.image)
         

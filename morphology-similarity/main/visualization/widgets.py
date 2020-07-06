@@ -8,6 +8,9 @@ import pandas as pd
 import numpy as np
 from .figures import get_distance_matrix_figure, get_image_figure
 
+def binarize(image, thresh=0.5):
+    return (image > thresh).astype(int)
+
 def reshape_image(image):
     image = np.array(image)
     try:
@@ -105,7 +108,7 @@ def get_distance_matrix_dataframe_widget(dist_matrix, df_x, df_y=None, zmax=None
     ])
 
 
-def get_distance_matrix_widget(dist_matrix, traj_x, traj_y=None, zmax=None):
+def get_distance_matrix_widget(dist_matrix, traj_x, traj_y=None, binarize_sample=True, zmax=None):
     """
     Creates a widget which displays a Plotly Heatmap representing the provided distance matrix.
     Clicking on a cell in the distance matrix displays the two underlying morphologies.
@@ -156,7 +159,10 @@ def get_distance_matrix_widget(dist_matrix, traj_x, traj_y=None, zmax=None):
             if str(morph) == x_params:
                 break
         # Set the morphology viz to this image
-        sample_fig_x.data[0].z = morph.image
+        image = morph.image
+        if binarize_sample:
+            image = binarize(image)
+        sample_fig_x.data[0].z = image
         # Clear the output, then print the morph. info to it
         out_x.clear_output()
         with out_x:
@@ -168,7 +174,10 @@ def get_distance_matrix_widget(dist_matrix, traj_x, traj_y=None, zmax=None):
         for morph in traj_y.morphologies:
             if str(morph) == y_params:
                 break
-        sample_fig_y.data[0].z = morph.image
+        image = morph.image
+        if binarize_sample:
+            image = binarize(image)
+        sample_fig_y.data[0].z = image
         out_y.clear_output()
         with out_y:
             print("Sample:")

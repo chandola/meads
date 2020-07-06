@@ -17,6 +17,51 @@ def shape_ratio_sig(component):
     return component.shape[0]/component.shape[1]
 
 
+def perimeter_sig(component, max_peri=100):
+    component = crop_image(component)
+    perimeter = measure.perimeter(component)/max_peri
+    return np.min([perimeter, 1.])
+
+
+def area_sig(component, max_area=1000):
+    """The area of the component"""
+    component = crop_image(component)
+    area = (component.shape[0]*component.shape[1])/max_area
+    return np.min([area, 1.])
+
+
+def length_sig(component, max_length=100):
+    """The length of the component"""
+    component = crop_image(component)
+    return component.shape[0]/max_length
+
+
+def height_sig(component, max_height=400):
+    """The length of the component"""
+    component = crop_image(component)
+    return component.shape[1]/max_height
+
+
+def y_sym_sig(component):
+    component = crop_image(component)
+    height, width = component.shape
+    count = 0
+    for y in range(height):
+        for x in range(width//2+1):
+            count += component[y, x] == component[y, width-x-1]
+    return count/(height * width/2)
+
+
+def x_sym_sig(component):
+    component = crop_image(component)
+    height, width = component.shape
+    count = 0
+    for y in range(height//2+1):
+        for x in range(width):
+            count += component[y, x] == component[height-y-1, x]
+    return count/(height * width/2)
+
+
 def perimeter_area_ratio_sig(component):
     """The surface to volume (perimeter to area) ratio"""
     perimeter = measure.perimeter(component)
@@ -28,6 +73,12 @@ def perimeter_area_ratio_sig(component):
 def surface_volume_ratio_sig(component):
     """Alias for perimeter to area ratio"""
     return perimeter_area_ratio_sig(component)
+
+
+def euler_number_sig(component):
+    labeled_sample = measure.label(component)
+    props = measure.regionprops(labeled_sample)[0]
+    return props.euler_number
 
 
 def rect_area_ratio_sig(component):

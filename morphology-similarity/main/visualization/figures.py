@@ -5,7 +5,7 @@ Contains functions to build Plotly figures.
 import plotly.graph_objs as go
 
 
-def get_image_figure(data=None, height=75, width=300, margin=0):
+def get_image_figure(data=None, height=75, width=300, margin=0, return_figure=True):
     """
     Create a Plotly Heatmap to visualize our image data (akin to imshow)
 
@@ -54,14 +54,19 @@ def get_image_figure(data=None, height=75, width=300, margin=0):
             'visible': False
         },
     )
+    
+    heatmap = go.Heatmap(
+        z=data,
+        hoverinfo='none',
+        showscale=False
+    )
+    
+    if not return_figure:
+        return heatmap, sample_fig_layout
 
     # Generate Fig
     sample_fig = go.FigureWidget(
-        data=go.Heatmap(
-            z=data,
-            hoverinfo='none',
-            showscale=False
-        ),
+        data=heatmap,
         layout=sample_fig_layout
     )
     return sample_fig
@@ -124,3 +129,30 @@ def get_distance_matrix_figure(
         )
     )
     return dist_fig
+
+
+def get_histogram(data=None):
+    """
+    Create a Plotly Histogram
+
+    Arguments:
+        data: Histogram data
+
+    Returns:
+        A Plotly Histogram figure for the data.
+    """
+
+    # Generate Layout
+    layout = go.Layout()
+
+    # Generate Fig
+    fig = go.FigureWidget(
+        data=go.Histogram(
+            x=data
+        ),
+        layout=layout
+    )
+    fig.update_layout(barmode='overlay')
+    # Reduce opacity to see both histograms
+    fig.update_traces(opacity=0.75)
+    return fig
