@@ -25,7 +25,7 @@ def generate_region_adjacency_graph(image, signature_function):
                 image,
                 allow_blank_images=True,
                 return_images=True)
-    
+
     # make sure number of components = number of unique labels
     # make sure no component is being pruned
     assert len(components) == len(np.unique(label_image)), \
@@ -113,10 +113,12 @@ def get_node_color_sign(node_color):
     assert node_color in [0,1,255], "node_color can only be 0, 1 or 255"
 
     if node_color < 2:
-        # when node color value is 0 or 1
+        # when node color value is 0 or 1 that means it is a black node
+        # black node is -1
         return ((-1) ** (node_color+1))
     else:
         # 255 is always white
+        # white node is 1
         return 1
         
 
@@ -316,3 +318,119 @@ def generate_padded_vectors(vectors):
     return padded_vectors
 
 
+def generate_padded_vectors_reversable(vectors):
+    """
+    Implements layerwise padding. 
+    Note this function only pads any two vectors at a time by aligning 
+    all the white nodes one under the other and filing empty spaces
+    with empty nodes in between. 
+    NOTE:
+    This is a modified version of the generate_padded_vectors function. 
+    This function instead of aligning all white peaks one under the other
+    aligns all the continous chunks of elements one under the other by 
+    making them of the same length. 
+    Args:
+        vectors (list): A list of length 2 containing the 2 vectors to be padded
+    Returns:
+        padded_vectors (list): A list of length 2 containing the 2 padded vectors
+    """
+     
+    split_vectors = []
+
+    for vector in vectors:
+        # split the nodes into continous chunks of values having the same sign
+        # same sign means same color
+        split_vector = []
+
+        previous = vector[0]
+        sub_split_vector = []
+
+        for element in vector:
+            # component's signature value should always be non-zero
+            assert element != 0, 'Element with 0 signature found'
+
+            if element*previous > 0:
+                # current and the previous element have the same sign
+                sub_split_vector.append(element)
+            else:
+                # current and the previous do not have the same sign
+                split_vector.append(sub_split_vector)
+                sub_split_vector = [element]
+
+            previous = element
+
+        # appending the last sub split 
+        # since there was no sign change to trigger the sign channge
+        split_vector.append(sub_split_vector)
+
+        split_vectors.append(split_vector)
+
+    # for vector in vectors:
+    #     # split the nodes based on sign
+    #     split_indices = []
+
+    #     for index,d in enumerate(vector):
+    #         if d >= 0:
+    #             split_indices.extend([index, index+1])
+
+    #     split_vector = np.split(vector, split_indices)
+    #     split_vectors.append(split_vector)
+
+
+    print([print(i) for i in split_vectors])
+
+
+
+    # get the maximum length of split at each 
+    # position for all the vectors
+    max_split_length = {}
+
+    for split_vector in split_vectors:
+        for index, split in enumerate(split_vector):
+            max_split_length[index] = max([len(split), max_split_length.get(index, 0)])
+
+
+
+    # pad all the splits to their 
+    # respective max lengths
+    padded_split_vectors = []
+    for split_vector in split_vectors:
+
+        padded_split_vector = []
+        for index,split in enumerate(split_vector):
+
+            padded_split = front_pad(split, max_split_length[index])
+            padded_split_vector.append(padded_split)
+
+        padded_split_vectors.append(padded_split_vector)
+
+
+
+    # Merge all splits into single vector
+    merged_vectors = []
+    for padded_split_vector in padded_split_vectors:
+        merged_vector = np.concatenate(padded_split_vector)
+        merged_vectors.append(merged_vector)
+
+
+    # over all frontpad to compensate for
+    # different number of layers in each graph
+    max_dimension = max(map(len, merged_vectors))
+
+    padded_vectors = []
+    for merged_vector in merged_vectors:
+
+        padded_vector = front_pad(merged_vector, max_dimension)
+        padded_vectors.append(padded_vector)
+
+
+    # make all vector dimension magnitudes 
+    # positive irrespective of color
+    # positive_vectors = []
+    # for padded_vector in padded_vectors:
+
+    #   positive_vector = np.abs(padded_vector)
+    #   positive_vectors.append(positive_vector)
+
+    # write some tests maybe
+    return padded_vectors
